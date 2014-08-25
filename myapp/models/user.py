@@ -6,6 +6,7 @@ User model.
 import logging
 
 # Import Django modules
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.utils.translation import ugettext_lazy as _
@@ -46,6 +47,7 @@ class User(AbstractBaseUser):
     # Personal info fields
     first_name = models.CharField(max_length=30, blank=True, null=True)
     last_name = models.CharField(max_length=30, blank=True, null=True)
+    time_zone = models.CharField(max_length=30, default='America/Chicago', choices=UserManager.TIME_ZONE_CHOICES)
     
     # Set the manager
     users = UserManager()
