@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}{{ PROJECT_NAME }} | Login{% endblock %}
+
+{% block content %}
+    <div class="main-container">
+        <div class="container">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="login-container">
+                            <div class="well">
+                                <h4 class="header blue lighter bigger">
+                                    <i class="icon-key blue"></i>
+                                    Enter Your Login Information
+                                </h4>
+
+                                <div class="space-6"></div>
+
+                                {{ status_div|safe|escape }}
+
+                                <form action="{{ request.get_full_path }}" method="post">{% csrf_token %}
+                                    <fieldset>
+                                        <label class="block clearfix">
+                                        <span class="block input-icon input-icon-right">
+                                            <input type="text" class="form-control" name="username"
+                                                   id="username" placeholder="Username" required/>
+                                            <i class="icon-user"></i>
+                                        </span>
+                                        </label>
+
+                                        <label class="block clearfix">
+                                        <span class="block input-icon input-icon-right">
+                                            <input type="password" class="form-control" name="password"
+                                                   id="password" placeholder="Password" required/>
+                                            <i class="icon-lock"></i>
+                                        </span>
+                                        </label>
+
+                                        <div class="space"></div>
+
+                                        <div class="clearfix">
+                                            <label class="inline">
+                                                <input type="checkbox" name="remember-me" id="remember-me"
+                                                       class="ace"/>
+                                                <span class="lbl"> Stay signed in</span>
+                                            </label>
+
+                                            <button type="submit"
+                                                    class="width-35 pull-right btn btn-sm btn-primary">
+                                                Sign in
+                                                <i class="icon-signin icon-on-right"></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="space-4"></div>
+                                    </fieldset>
+                                </form>
+
+                                <div class="clearfix">
+                                    <a href="/forgot" class="pull-right">
+                                        Forgot your password?
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_footer %}
+    <script type="text/javascript">
+        $("#username").focus();
+    </script>
+{% endblock %}

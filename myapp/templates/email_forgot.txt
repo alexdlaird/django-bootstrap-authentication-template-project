@@ -1,0 +1,8 @@
+We Reset Your Password!
+
+So, you forgot your password, eh? It happens to the best of us. We went ahead and reset it for you to {{ password }}. We recommend that you login promptly, using your trusty new password, and visit {{ host }}/settings to change your password.
+
+If you have any more troubles, contact support at {{ site_url }}/support and we'll get this straightened out for you.
+
+Cheers,
+The My Project Team
