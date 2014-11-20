@@ -1,10 +1,9 @@
 """
-Settings for a development environment.
+Settings for a production environment.
 """
 
 # Import system modules
 import os
-import warnings
 
 # Import project modules
 from .common import DEFAULT_TEMPLATE_CONTEXT_PROCESSORS, DEFAULT_MIDDLEWARE_CLASSES, DEFAULT_INSTALLED_APPS
@@ -15,22 +14,16 @@ __version__ = '0.0.1'
 
 
 # Define the base working directory of the application
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.normpath(os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..'))
 
 
 # Application definition
 
-INSTALLED_APPS = DEFAULT_INSTALLED_APPS + (
-    'debug_toolbar',
-)
+INSTALLED_APPS = DEFAULT_INSTALLED_APPS
 
-MIDDLEWARE_CLASSES = DEFAULT_MIDDLEWARE_CLASSES + (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-)
+MIDDLEWARE_CLASSES = DEFAULT_MIDDLEWARE_CLASSES
 
-TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.debug',
-)
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_TEMPLATE_CONTEXT_PROCESSORS
 
 
 #############################
@@ -41,15 +34,17 @@ TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_TEMPLATE_CONTEXT_PROCESSORS + (
 
 SECRET_KEY = 'ui(0mu1=%8pfnnuy0i&8dlf*whlfo4_u6&4mlm)c90aoj1_etn'
 CSRF_MIDDLEWARE_SECRET = '7A0+@mDw*5hA=Bzh${L%r;7Hbcut|.7_#)BJcZi{)IGN?Z^1Ya'
-ALLOWED_HOSTS = ['localhost']
-INTERNAL_IPS = (
-    '127.0.0.1',
-)
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+ALLOWED_HOSTS = ['www.host.com',
+                 'host.com']
 
 # Logging
 
-DEBUG = True
-TEMPLATE_DEBUG = True
+ADMINS = (
+    ('My Project', 'project@host.com')
+)
+MANAGERS = ADMINS
 
 LOGGING = {
     'version': 1,
@@ -65,8 +60,16 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'django.utils.log.NullHandler',
         },
+        'django_log': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'django_log'),
+            'maxBytes': 50000,
+            'backupCount': 2,
+            'formatter': 'standard',
+        },
         'myproject_log': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(BASE_DIR, 'logs', 'myproject_log'),
             'maxBytes': 50000,
@@ -74,55 +77,44 @@ LOGGING = {
             'formatter': 'standard',
         },
         'myapp_log': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(BASE_DIR, 'logs', 'myapp_log'),
             'maxBytes': 50000,
             'backupCount': 2,
             'formatter': 'standard',
         },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'standard'
-        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'email_backend': 'django.core.mail.backends.smtp.EmailBackend',
+        }
     },
     'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'propagate': True,
-            'level': 'WARN',
-        },
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'INFO',
-            'propagate': False,
-        },
         'django.request': {
-            'handlers': ['console'],
+            'handlers': ['django_log', 'mail_admins'],
             'level': 'ERROR',
             'propagate': False,
         },
         'myproject': {
-            'handlers': ['console', 'myproject_log'],
-            'level': 'DEBUG',
+            'handlers': ['myproject_log', 'mail_admins'],
+            'level': 'INFO',
         },
         'myapp': {
-            'handlers': ['console', 'myapp_log'],
-            'level': 'DEBUG',
+            'handlers': ['myapp_log', 'mail_admins'],
+            'level': 'INFO',
         },
     }
 }
-
-# When in development, we want to be warned about dates that don't have a timezone
-warnings.filterwarnings('error', r"DateTimeField .* received a naive datetime", RuntimeWarning,
-                        r'django\.db\.models\.fields')
 
 # Database
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'myproject',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'db_host',
+        'USER': 'db_user',
+        'PASSWORD': 'db_password',
     }
 }

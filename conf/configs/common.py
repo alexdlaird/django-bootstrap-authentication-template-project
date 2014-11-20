@@ -11,7 +11,7 @@ __version__ = '0.0.1'
 
 
 # Define the base working directory of the application
-BASE_DIR = os.path.normpath(os.path.join(os.path.abspath(os.path.dirname(__file__)), '..'))
+BASE_DIR = os.path.normpath(os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..'))
 
 
 # ############################
