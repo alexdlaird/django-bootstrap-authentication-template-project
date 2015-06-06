@@ -1,5 +1,5 @@
 """
-Form for user modification..
+Form for user modification.
 """
 
 # Import Django modules

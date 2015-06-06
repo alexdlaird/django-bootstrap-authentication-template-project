@@ -6,7 +6,7 @@ Context processors for project-specific attributes to be passed to templates.
 from django.conf import settings
 
 __author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2014, Innovative Software Engineer'
+__copyright__ = 'Copyright 2014, Alex Laird'
 __version__ = '0.0.1'
 
 
