@@ -38,9 +38,11 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="{% active request "/portal" %}"><a href="{% url 'portal' %}">Portal</a></li>
-                </ul>
+                {% if user.is_authenticated %}
+                    <ul class="nav navbar-nav">
+                        <li class="{% active request "/portal" %}"><a href="{% url 'portal' %}">Portal</a></li>
+                    </ul>
+                {% endif %}
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
                         <li class="dropdown {% active request "/settings" %}">

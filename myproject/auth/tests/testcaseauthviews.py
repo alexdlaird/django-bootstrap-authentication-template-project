@@ -80,7 +80,7 @@ class TestCaseAuthViews(TestCase):
         # THEN
         userhelper.verify_user_not_logged_in(self)
         self.assertFalse(get_user_model().objects.filter(username='my_test_user').exists())
-        self.assertContains(response, 'Enter a valid email address.')
+        self.assertContains(response, 'valid email address')
 
     def test_registration_password_insufficient(self):
         # GIVEN
@@ -95,7 +95,22 @@ class TestCaseAuthViews(TestCase):
         # THEN
         userhelper.verify_user_not_logged_in(self)
         self.assertFalse(get_user_model().objects.filter(username='my_test_user').exists())
-        self.assertContains(response, 'password is too short.')
+        self.assertContains(response, 'password is too short')
+
+    def test_registration_password_mismatch(self):
+        # GIVEN
+        userhelper.verify_user_not_logged_in(self)
+
+        # WHEN
+        response = self.client.post(reverse('register'),
+                                    {'email': 'test@test.com', 'username': 'my_test_user',
+                                     'password1': 'test_pass_1', 'password2': 'test_pass_2',
+                                     'time_zone': 'America/Chicago'})
+
+        # THEN
+        userhelper.verify_user_not_logged_in(self)
+        self.assertFalse(get_user_model().objects.filter(username='my_test_user').exists())
+        self.assertContains(response, 'enter matching passwords')
 
     def test_login_username_success(self):
         # GIVEN

@@ -51,9 +51,6 @@ class User(AbstractBaseUser, BaseModel):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
-    def get_user(self):
-        return self
-
     def get_full_name(self):  # pragma: no cover
         """
         Retrieve the long name for the user.
@@ -90,7 +87,7 @@ class User(AbstractBaseUser, BaseModel):
         return True
 
     @property
-    def is_staff(self):
+    def is_staff(self):  # pragma: no cover
         """
         Check if this user has administrative privileges.
 
