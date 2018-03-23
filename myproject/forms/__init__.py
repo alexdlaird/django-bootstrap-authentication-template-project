@@ -1,2 +1,0 @@
-from userchangeform import UserChangeForm
-from usercreationform import UserCreationForm

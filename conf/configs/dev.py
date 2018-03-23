@@ -1,22 +1,18 @@
 """
-Settings for a development environment.
+Settings specific to a development environemnt using Django's `runserver` command, reading values from `.env`.
 """
 
-# Import system modules
 import os
 import warnings
 
-# Import project modules
-from .common import DEFAULT_TEMPLATE_CONTEXT_PROCESSORS, DEFAULT_MIDDLEWARE_CLASSES, DEFAULT_INSTALLED_APPS
+from .common import DEFAULT_TEMPLATES, DEFAULT_MIDDLEWARE, DEFAULT_INSTALLED_APPS, PIPELINE
 
 __author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2014, Alex Laird'
-__version__ = '0.0.1'
-
+__copyright__ = 'Copyright 2018, Alex Laird'
+__version__ = '0.2.0'
 
 # Define the base working directory of the application
 BASE_DIR = os.path.normpath(os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..'))
-
 
 # Application definition
 
@@ -24,14 +20,15 @@ INSTALLED_APPS = DEFAULT_INSTALLED_APPS + (
     'debug_toolbar',
 )
 
-MIDDLEWARE_CLASSES = DEFAULT_MIDDLEWARE_CLASSES + (
+MIDDLEWARE = DEFAULT_MIDDLEWARE + (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.debug',
-)
+TEMPLATES = DEFAULT_TEMPLATES
 
+TEMPLATES[0]['OPTIONS']['context_processors'] += (
+    'django.template.context_processors.debug',
+)
 
 #############################
 # Django configuration
@@ -39,17 +36,11 @@ TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_TEMPLATE_CONTEXT_PROCESSORS + (
 
 # Security
 
-SECRET_KEY = 'ui(0mu1=%8pfnnuy0i&8dlf*whlfo4_u6&4mlm)c90aoj1_etn'
-CSRF_MIDDLEWARE_SECRET = '7A0+@mDw*5hA=Bzh${L%r;7Hbcut|.7_#)BJcZi{)IGN?Z^1Ya'
-ALLOWED_HOSTS = ['localhost']
 INTERNAL_IPS = (
     '127.0.0.1',
 )
 
 # Logging
-
-DEBUG = True
-TEMPLATE_DEBUG = True
 
 LOGGING = {
     'version': 1,
@@ -61,26 +52,6 @@ LOGGING = {
         },
     },
     'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
-        },
-        'myproject_log': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', 'myproject_log'),
-            'maxBytes': 50000,
-            'backupCount': 2,
-            'formatter': 'standard',
-        },
-        'myapp_log': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', 'myapp_log'),
-            'maxBytes': 50000,
-            'backupCount': 2,
-            'formatter': 'standard',
-        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
@@ -104,13 +75,9 @@ LOGGING = {
             'propagate': False,
         },
         'myproject': {
-            'handlers': ['console', 'myproject_log'],
+            'handlers': ['console'],
             'level': 'DEBUG',
-        },
-        'myapp': {
-            'handlers': ['console', 'myapp_log'],
-            'level': 'DEBUG',
-        },
+        }
     }
 }
 
@@ -118,11 +85,36 @@ LOGGING = {
 warnings.filterwarnings('error', r"DateTimeField .* received a naive datetime", RuntimeWarning,
                         r'django\.db\.models\.fields')
 
+# Cache
+
+if os.environ.get('USE_IN_MEMORY_DB', 'True') == 'True':
+    CACHES = {
+        'default': {
+            'BACKEND': 'myproject.common.cache.myprojectlocmem.MyProjectLocMemCache',
+            'LOCATION': 'unique-snowflake',
+        }
+    }
+else:
+    from conf.configs import deploy
+
+    SESSION_ENGINE = deploy.SESSION_ENGINE
+    CACHES = deploy.CACHES
+
 # Database
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if os.environ.get('USE_IN_MEMORY_DB', 'True') == 'True':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    from conf.configs import deploy
+
+    DATABASES = deploy.DATABASES
+
+# Static
+
+PIPELINE['CSS_COMPRESSOR'] = None
+PIPELINE['JS_COMPRESSOR'] = None

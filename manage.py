@@ -3,13 +3,12 @@
 Management script for Django environment.
 """
 
-# Import system modules
 import os
 import sys
 
 __author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2014, Alex Laird'
-__version__ = '0.0.1'
+__copyright__ = 'Copyright 2018, Alex Laird'
+__version__ = '0.2.0'
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "conf.settings")

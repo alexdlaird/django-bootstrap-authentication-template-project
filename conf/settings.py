@@ -1,67 +1,70 @@
 """
-The file below is used in place of the common Django settings file, and instead this file
-determines the settings file to use depending on the environment. For instance, one settings
-file may be used in development, one in production. Two separate settings files may define
-settings specific to their environment, but they both may also share common settings attributes.
+This generic settings builder reads the appropriate configuration file for different methods of deployment.
 
-This settings file first loads the "common" settings file, then loads the settings file specific
-to the environment being run in.
+Note that the system environment variable ENVIRONMENT should be set to a slug that matches the deployed environment.
+
+* If ENVIRONMENT is set to `dev`, `dev.py` will be used for configuration, using values from `.env`
+* If ENVIRONMENT is not 'dev', `deploy.py` will be used for configuration, using system environment variables
+* If `test` is passed as an argument, ENVIRONMENT is ignored and `test.py` is used for configuration, reading from .env`
+
+All configuration files first read `common.py` before applying deployment-specific configurations.
 """
 
-# Import system modules
-import socket
+import os
 import sys
+from builtins import str
 
 __author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2014, Alex Laird'
-__version__ = '0.0.1'
+__copyright__ = 'Copyright 2018, Alex Laird'
+__version__ = '0.2.0'
 
+# Are we running on the dev server
+DEV_SERVER = False
+
+if 'test' not in sys.argv:
+    if os.environ.get('ENVIRONMENT') == 'dev' or (len(sys.argv) > 1 and sys.argv[1] == 'runserver'):
+        conf = 'dev'
+        if len(sys.argv) > 1 and sys.argv[1] == 'runserver':
+            DEV_SERVER = True
+    else:
+        conf = 'deploy'
+
+    if conf == 'dev':
+        print('Loading .env file')
+
+        import dotenv
+
+        dotenv.read_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"), True)
+# If we're running tests, run a streamlined settings file for efficiency
+else:
+    conf = 'test'
+
+    print('Loading .env file')
+
+    import dotenv
+
+    dotenv.read_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"), True)
+
+# Load conf properties into the local scope
+print('Using conf.configs.{}'.format(conf))
 common_conf_module = __import__('conf.configs.common', globals(), locals(), 'myproject')
+conf_module = __import__('conf.configs.{}'.format(conf), globals(), locals(), 'myproject')
 
 # Load common conf properties into the local scope
 for setting in dir(common_conf_module):
     if setting == setting.upper():
         locals()[setting] = getattr(common_conf_module, setting)
 
-# The default assumption is that we're not testing, but if the testing environment is deteched, this value will change
-TESTING = False
+# Load env-specific properties into the local scope
+for setting in dir(conf_module):
+    if setting == setting.upper():
+        locals()[setting] = getattr(conf_module, setting)
 
-# Assume we are not in a production environment until that configuration environment is loaded, which is crucial to
-# prevent certain functionality (for instance, subscriptions) from ever firing outside of a production environment
-IS_PRODUCTION = False
+locals()['DEV_SERVER'] = DEV_SERVER
 
-if 'test' not in sys.argv:
-    # Available environments for conf files are keyed by hostname
-    confs = {
-        'm.host.com': 'prod',
-    }
+# Special configuration if we are using SQLite
+if conf_module.DATABASES['default']['ENGINE'] == 'django.db.backends.sqlite3':
+    from django.db import connection
 
-    # If the hostname is not in the list of confs, use 'dev' conf
-    HOSTNAME = socket.gethostname()
-    conf_module = __import__('conf.configs.%s' % (confs[HOSTNAME] if HOSTNAME in confs.keys() else 'dev'),
-                             globals(),
-                             locals(), 'myproject')
-    
-    # If we're in our production environment, set the flag
-    if HOSTNAME in confs.keys() and confs[HOSTNAME] == 'prod':
-        IS_PRODUCTION = True
-
-    # Load the conf properties into the local scope
-    for setting in dir(conf_module):
-        if setting == setting.upper():
-            locals()[setting] = getattr(conf_module, setting)
-# If we're running tests, run a streamlined settings file for efficiency
-else:
-    TESTING = True
-
-    test_conf_module = __import__('conf.configs.test', globals(), locals(), 'myproject')
-
-    # Load test conf properties into the local scope
-    for setting in dir(test_conf_module):
-        if setting == setting.upper():
-            locals()[setting] = getattr(test_conf_module, setting)
-
-# Last things last, load environment variables from this file into the scope
-locals()['TESTING'] = TESTING
-locals()['IS_PRODUCTION'] = IS_PRODUCTION
-locals()['HOSTNAME'] = HOSTNAME
+    connection.cursor()
+    connection.connection.text_factory = lambda x: str(x)

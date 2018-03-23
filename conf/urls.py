@@ -1,32 +1,37 @@
 """
-Base URLs.
+Base URL configuration.
 """
 
-# Import Django modules
-from django.conf.urls import patterns, include, url
-from django.contrib import admin
+import sys
 
-# Import project modules
-from myproject.admin import myproject_admin_site
-from myapp.views import *
+from django.conf import settings as config
+from django.conf.urls import include, url, static
+
+import myproject.auth.urls
+import myproject.common.urls
+import myproject.myapp.urls
 
 __author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2014, Alex Laird'
-__version__ = '0.0.1'
+__copyright__ = 'Copyright 2018, Alex Laird'
+__version__ = '0.2.0'
 
 urlpatterns = [
-    # Admin URLs
-    url(r'^admin/', include(myproject_admin_site.urls), name='admin'),
-
-    # Base URL
-    url(r'^$', home, name='home'),
-    
-    # Authentication URLs
-    url(r'^login$', login, name='login'),
-    url(r'^logout', logout, name='logout'),
-    url(r'^forgot$', forgot, name='forgot'),
-    
-    # Authenticated URLs
-    url(r'^myapp$', myapp, name='myapp'),
-    url(r'^settings$', settings, name='settings'),
+    # Include app-specific URL files
+    url(r'^', include(myproject.common.urls)),
+    url(r'^', include(myproject.auth.urls)),
+    url(r'^', include(myproject.myapp.urls)),
 ]
+
+if config.DEBUG:
+    import debug_toolbar
+
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
+
+if config.DEBUG or 'test' in sys.argv:
+    # Ensure media files are shown properly when using a dev server
+    urlpatterns += [
+        url(r'^' + config.MEDIA_URL.lstrip('/') + '(?P<path>.*)$', static.serve, {
+            'document_root': config.MEDIA_ROOT})
+    ]

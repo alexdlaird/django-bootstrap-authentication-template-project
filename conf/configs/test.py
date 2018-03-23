@@ -1,55 +1,44 @@
 """
-Streamlined Django settings for running test cases.
+Settings specific to running tests, reading values from `.env`.
 """
 
-# Import system modules
-import os
-import sys
 import logging
+import os
 
-# Import project modules
-from .common import DEFAULT_TEMPLATE_CONTEXT_PROCESSORS, DEFAULT_MIDDLEWARE_CLASSES, DEFAULT_INSTALLED_APPS
+from .common import DEFAULT_TEMPLATES, DEFAULT_MIDDLEWARE, DEFAULT_INSTALLED_APPS, PIPELINE
 
 __author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2014, Alex Laird'
-__version__ = '0.0.1'
-
+__copyright__ = 'Copyright 2018, Alex Laird'
+__version__ = '0.2.0'
 
 # Define the base working directory of the application
 BASE_DIR = os.path.normpath(os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..'))
-
 
 # Application definition
 
 INSTALLED_APPS = DEFAULT_INSTALLED_APPS
 
-MIDDLEWARE_CLASSES = DEFAULT_MIDDLEWARE_CLASSES
+MIDDLEWARE = DEFAULT_MIDDLEWARE
 
-TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_TEMPLATE_CONTEXT_PROCESSORS
+TEMPLATES = DEFAULT_TEMPLATES
 
 # This is an insecure password hasher, but much faster than what would be used in production
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
 
+# Security
 
-# Security configuration
+CSRF_MIDDLEWARE_SECRET = None
 
-SECRET_KEY = 'vb*dxh%m4-!g^=fiozd4t@38j2voupkom-%*8&t%5p+lkfk5em'
+# Logging
 
-ALLOWED_HOSTS = ['localhost']
+DEBUG = False
 
-
-# Logging configuration
-
-# DO_LOGGING is false by default to improve efficiency and speed of tests, but it can be set to true to enable logging
-# when writing or debugging tests
-TEST_DEBUG = False
-
-if TEST_DEBUG:
+if os.environ.get('TEST_DEBUG', 'False') == 'True':
     LOGGING = {
         'version': 1,
-        'disable_existing_loggers': True,
+        'disable_existing_loggers': False,
         'formatters': {
             'standard': {
                 'format': '[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s',
@@ -57,73 +46,67 @@ if TEST_DEBUG:
             },
         },
         'handlers': {
-            'null': {
-                'level': 'DEBUG',
-                'class': 'django.utils.log.NullHandler',
-            },
-            'django_log': {
-                'level': 'ERROR',
-                'class': 'logging.FileHandler',
-                'filename': os.path.join(BASE_DIR, 'logs', 'django_test_log'),
-                'formatter': 'standard',
-            },
-            'myproject_log': {
-                'level': 'DEBUG',
-                'class': 'logging.FileHandler',
-                'filename': os.path.join(BASE_DIR, 'logs', 'myproject_test_log'),
-                'formatter': 'standard',
-            },
-            'myapp_log': {
-                'level': 'DEBUG',
-                'class': 'logging.FileHandler',
-                'filename': os.path.join(BASE_DIR, 'logs', 'myapp_test_log'),
-                'formatter': 'standard',
-            },
             'console': {
-                'level': 'ERROR',
+                'level': 'DEBUG',
                 'class': 'logging.StreamHandler',
                 'formatter': 'standard'
             },
         },
         'loggers': {
+            'django': {
+                'handlers': ['console'],
+                'propagate': True,
+                'level': 'WARN',
+            },
+            'django.db.backends': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': False,
+            },
             'django.request': {
-                'handlers': ['django_log', 'console'],
+                'handlers': ['console'],
                 'level': 'ERROR',
                 'propagate': False,
             },
             'myproject': {
-                'handlers': ['myproject_log'],
+                'handlers': ['console'],
                 'level': 'DEBUG',
-            },
-            'myapp': {
-                'handlers': ['maypp_log'],
-                'level': 'DEBUG',
-            },
+            }
         }
     }
 else:
     logging.disable(logging.ERROR)
 
+# Cache
 
-# Database configuration
-
-# STAGING_DATABASE is false by default to improve efficiency and speed of tests, but it can be set to true to ensure all tests
-# still pass when using the staging server's database
-STAGING_DATABASE = False
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.test.sqlite3'),
-    }
-}
-if STAGING_DATABASE:
-    DATABASES = {
+if os.environ.get('USE_IN_MEMORY_DB', 'True') == 'True':
+    CACHES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'HOST': 'db_host',
-            'NAME': 'myproject',
-            'USER': 'db_user',
-            'PASSWORD': 'db_password',
+            'BACKEND': 'myproject.common.cache.myprojectlocmem.MyProjectLocMemCache',
+            'LOCATION': 'unique-snowflake',
         }
     }
+else:
+    from conf.configs import deploy
+
+    SESSION_ENGINE = deploy.SESSION_ENGINE
+    CACHES = deploy.CACHES
+
+# Database
+
+if os.environ.get('USE_IN_MEMORY_DB', 'True') == 'True':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.test.sqlite3'),
+        }
+    }
+else:
+    from conf.configs import deploy
+
+    DATABASES = deploy.DATABASES
+
+# Static
+
+PIPELINE['CSS_COMPRESSOR'] = None
+PIPELINE['JS_COMPRESSOR'] = None
