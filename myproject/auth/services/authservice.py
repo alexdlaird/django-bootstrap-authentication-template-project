@@ -35,13 +35,12 @@ def process_register(request, user):
                                         'site_url': settings.PROJECT_HOST,
                                         'login_url': reverse('login'),
                                     },
-                                    'Welcome to Helium', [user.email], [settings.DEFAULT_FROM_EMAIL])
+                                    'Welcome to {}'.format(settings.PROJECT_NAME), [user.email],
+                                    [settings.DEFAULT_FROM_EMAIL])
 
-    # Now that the user is registered, log them in automatically and redirect them to the authenticated
-    # landing page
-    user.backend = 'django.contrib.auth.backends.ModelBackend'
+    set_request_status(request, 'info', 'You\'re good to go. Login to get started!')
 
-    return reverse('portal')
+    return reverse('login')
 
 
 def process_login(request, username, password):

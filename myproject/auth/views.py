@@ -53,7 +53,7 @@ def register(request):
         return response
     else:
         data = {
-            'user_register_form': user_register_form,
+            'form': user_register_form,
             'status': status
         }
 
@@ -91,7 +91,7 @@ def login(request):
             http_status = 401
 
         data = {
-            'user_login_form': user_login_form,
+            'form': user_login_form,
             'status': status
         }
 

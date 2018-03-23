@@ -158,6 +158,13 @@ STATICFILES_FINDERS = (
     'pipeline.finders.PipelineFinder',
 )
 
+# Media files
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Pipelines
+
 PIPELINE = {
     'DISABLE_WRAPPER': True,
     'STYLESHEETS': {

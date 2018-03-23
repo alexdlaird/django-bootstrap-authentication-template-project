@@ -11,7 +11,6 @@ class MyProjectAdminSite(AdminSite):
     site_header = settings.PROJECT_NAME + ' Administration'
     site_title = site_header
     index_title = settings.PROJECT_NAME
-    login_template = 'login.html'
 
 
 class BaseModelAdmin(ModelAdmin):

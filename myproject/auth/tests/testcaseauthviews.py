@@ -60,11 +60,12 @@ class TestCaseAuthViews(TestCase):
                                      'password2': 'test_pass_1!', 'time_zone': 'America/Chicago'})
 
         # THEN
-        # userhelper.verify_user_not_logged_in(self)
+        userhelper.verify_user_not_logged_in(self)
         user = get_user_model().objects.get(email='test@test.com')
         self.assertEqual(user.username, 'my_test_user')
         self.assertEqual(user.time_zone, 'America/Chicago')
-        # self.assertRedirects(response, reverse('portal'))
+        self.assertIn('good to go', self.client.cookies['status_msg'].value)
+        self.assertRedirects(response, reverse('login'))
 
     def test_registration_bad_data(self):
         # GIVEN

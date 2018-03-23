@@ -106,7 +106,7 @@ else:
 
     DATABASES = deploy.DATABASES
 
-# Static
+# Pipelines
 
 PIPELINE['CSS_COMPRESSOR'] = None
 PIPELINE['JS_COMPRESSOR'] = None

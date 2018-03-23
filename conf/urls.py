@@ -5,7 +5,8 @@ Base URL configuration.
 import sys
 
 from django.conf import settings as config
-from django.conf.urls import include, url, static
+from django.conf.urls import include, url
+from django.views import static
 
 import myproject.auth.urls
 import myproject.common.urls
