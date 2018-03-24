@@ -3,7 +3,7 @@ branch = True
 omit =
     conf/**
     myproject/common/sitemaps.py
-    myproject/common/cache/myprojectlocmem.py
+    myproject/common/cache/locmemkeys.py
     */admin.py
     */apps.py
     */tests/**

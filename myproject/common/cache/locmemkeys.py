@@ -7,7 +7,7 @@ __copyright__ = "Copyright 2018, Alex Laird"
 __version__ = '0.2.0'
 
 
-class MyProjectLocMemCache(LocMemCache):
+class LocMemKeysCache(LocMemCache):
     def keys(self, search):
         pattern = re.compile(self.make_key(search))
 
