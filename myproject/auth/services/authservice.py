@@ -20,8 +20,7 @@ logger = logging.getLogger(__name__)
 
 def process_register(request, user):
     """
-    At this point the user will be created in the database, but marked as inactive. They will not be active until
-    the verification process is complete.
+    Complete the registration process and send the new user an email.
 
     :param request: the request being processed
     :param user: the user that has been created
