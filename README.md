@@ -10,7 +10,7 @@ Django Bootstrap/Authentication Template Project
 * Pip (>= 9.0)
 
 ## Getting Started
-The project is developed using Python and [Django](https://www.djangoproject.com).
+The project is developed using [Python](https://www.python.org/), [Django](https://www.djangoproject.com), and [Bootstrap](http://getbootstrap.com/docs/3.3/).
 
 This repository contains the source code for a Django Bootstrap/Authentication Template Project.
 
