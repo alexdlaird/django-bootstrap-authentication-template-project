@@ -1,3 +1,7 @@
+"""
+Publicly accessible named URLs should be defined here to ensure they are properly listed in the generated /sitemap.xml.
+"""
+
 from django.contrib import sitemaps
 from django.core.urlresolvers import reverse
 

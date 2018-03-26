@@ -1,7 +1,3 @@
-"""
-Helper tag functions.
-"""
-
 from django import template
 
 __author__ = 'Alex Laird'
@@ -13,6 +9,9 @@ register = template.Library()
 
 @register.simple_tag
 def active(request, pattern):
+    """
+    Returns 'active' if the give pattern is in the current URL.
+    """
     try:
         if (request.path == '/' == pattern) or (pattern != '/' and request.path.startswith(pattern)):
             return 'active'

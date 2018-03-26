@@ -24,7 +24,7 @@ def process_register(request, user):
 
     :param request: the request being processed
     :param user: the user that has been created
-    :return: a redirect for the next page in the registration flow
+    :return: a redirect to the next page in the registration flow
     """
     logger.info('Registered new user with username: {}'.format(user.get_username()))
 
@@ -43,6 +43,14 @@ def process_register(request, user):
 
 
 def process_login(request, username, password):
+    """
+    Authenticate the user and log them if, if successful.
+
+    :param request: the request being processed
+    :param username: the username to authenticate
+    :param password: the password to authenticate
+    :return: a redirect to the next page in the login flow
+    """
     redirect = None
 
     user = authenticate(username=username, password=password)
@@ -70,12 +78,24 @@ def process_login(request, username, password):
 
 
 def process_logout(request):
+    """
+    Logout the currently authenticated user.
+
+    :param request: the request being processed
+    """
     email = request.user.email
     logout(request)
     logger.info('Logged out user {}'.format(email))
 
 
 def process_forgot_password(request):
+    """
+    Generate a new password and send an email to the email specified in the request. For security purposes, whether
+    the email exists in the system or not, the same response "success" will be shown the user.
+
+    :param request: the request being processed
+    :return: a redirect to the next page in the forgot password flow
+    """
     email = request.POST['email']
     try:
         user = get_user_model().objects.get(email=email)

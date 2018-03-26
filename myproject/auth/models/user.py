@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 
 class User(AbstractBaseUser, BaseModel):
-    # Basic fields for a user with authentication
+    # Authentication fields
 
     username = models.CharField(help_text='A unique name used to login to the system.',
                                 max_length=255, unique=True,
@@ -36,7 +36,7 @@ class User(AbstractBaseUser, BaseModel):
 
     is_superuser = models.BooleanField(default=False)
 
-    # Personal info fields
+    # Profile fields
 
     first_name = models.CharField(max_length=30, blank=True, null=True)
 

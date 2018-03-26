@@ -4,6 +4,7 @@ Settings specific to prod-like deployable code, reading values from system envir
 
 import os
 
+from conf.settings import PROJECT_ID
 from .common import DEFAULT_TEMPLATES, DEFAULT_MIDDLEWARE, DEFAULT_INSTALLED_APPS, DEBUG, PROJECT_NAME, \
     ADMIN_EMAIL_ADDRESS
 
@@ -53,7 +54,7 @@ LOGGING = {
         'django_log': {
             'level': 'ERROR',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/myproject/django.log',
+            'filename': '/var/log/{}/django.log'.format(PROJECT_ID),
             'maxBytes': 50000000,
             'backupCount': 3,
             'formatter': 'standard',
@@ -63,18 +64,26 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler',
             'include_html': True,
         },
-        'myproject_common_log': {
+        '{}_common_log'.format(PROJECT_ID): {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/myproject/myproject_common.log',
+            'filename': '/var/log/{}/common.log'.format(PROJECT_ID),
             'maxBytes': 50000000,
             'backupCount': 3,
             'formatter': 'standard',
         },
-        'myproject_auth_log': {
+        '{}_auth_log'.format(PROJECT_ID): {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/myproject/myproject_auth.log',
+            'filename': '/var/log/{}/auth.log'.format(PROJECT_ID),
+            'maxBytes': 50000000,
+            'backupCount': 3,
+            'formatter': 'standard',
+        },
+        '{}_myapp_log'.format(PROJECT_ID): {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/var/log/{}/myapp.log'.format(PROJECT_ID),
             'maxBytes': 50000000,
             'backupCount': 3,
             'formatter': 'standard',
@@ -86,12 +95,16 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'myproject.common': {
-            'handlers': ['myproject_common_log', 'mail_admins'],
+        'myproject.common'.format(PROJECT_ID): {
+            'handlers': ['{}_common_log'.format(PROJECT_ID), 'mail_admins'],
             'level': 'INFO',
         },
-        'myproject.auth': {
-            'handlers': ['myproject_auth_log', 'mail_admins'],
+        'myproject.auth'.format(PROJECT_ID): {
+            'handlers': ['{}_auth_log'.format(PROJECT_ID), 'mail_admins'],
+            'level': 'INFO',
+        },
+        'myproject.myapp'.format(PROJECT_ID): {
+            'handlers': ['{}_myapp_log'.format(PROJECT_ID), 'mail_admins'],
             'level': 'INFO',
         },
     }

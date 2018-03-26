@@ -22,6 +22,9 @@ class UserRegisterForm(forms.ModelForm, BaseForm):
         fields = ['username', 'email', 'time_zone']
 
     def clean(self):
+        """
+        Validate attributes, including password constraints, before persisting the user to the database.
+        """
         super(UserRegisterForm, self).clean()
 
         password1 = self.cleaned_data.get("password1")

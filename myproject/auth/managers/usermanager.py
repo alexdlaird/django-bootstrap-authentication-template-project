@@ -1,11 +1,6 @@
-"""
-Manager for the User model.
-"""
-
 import logging
 
 from django.contrib.auth.models import BaseUserManager
-from django.db import models
 from django.db.models import Q
 
 __author__ = 'Alex Laird'
@@ -15,14 +10,10 @@ __version__ = '0.2.0'
 logger = logging.getLogger(__name__)
 
 
-class UserQuerySet(models.query.QuerySet):
-    pass
-
-
 class UserManager(BaseUserManager):
     def create_user(self, username, email, password=None):  # pragma: no cover
         """
-        Create a new user with the given username, password, and email.
+        Create a new user with the given attributes.
 
         :param username: the username for the user
         :param email: the email for the new user
@@ -55,7 +46,6 @@ class UserManager(BaseUserManager):
         user = self.create_user(username=username,
                                 email=email,
                                 password=password)
-        user.is_active = True
         user.is_superuser = True
         user.save(using=self._db)
         return user
@@ -68,6 +58,3 @@ class UserManager(BaseUserManager):
         :return: the user
         """
         return self.get(Q(username__iexact=username) | Q(email__iexact=username))
-
-    def get_queryset(self):
-        return UserQuerySet(self.model, using=self._db)

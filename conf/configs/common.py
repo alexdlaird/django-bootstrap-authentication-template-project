@@ -5,6 +5,8 @@ Settings common to all deployment methods.
 import os
 import socket
 
+from conf.settings import PROJECT_ID
+
 __author__ = 'Alex Laird'
 __copyright__ = 'Copyright 2018, Alex Laird'
 __version__ = '0.2.0'
@@ -175,7 +177,7 @@ PIPELINE = {
                 'js/vendors/moment.js',
                 'js/vendors/moment-timezone.js',
             ),
-            'output_filename': 'js/myproject_{}.min.js'.format(PROJECT_VERSION)
+            'output_filename': 'js/{}_{}.min.js'.format(PROJECT_ID, PROJECT_VERSION)
         },
     }
 }

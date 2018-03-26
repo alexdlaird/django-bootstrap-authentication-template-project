@@ -8,6 +8,11 @@ __version__ = '0.2.0'
 
 
 class LocMemKeysCache(LocMemCache):
+    """
+    Extends the generic in-memory cache to support the querying of keys, similar to how a Redis-based implementation
+    might similar support this.
+    """
+
     def keys(self, search):
         pattern = re.compile(self.make_key(search))
 

@@ -1,5 +1,5 @@
 """
-View entrance functions.
+Authentication view entrance functions.
 """
 
 import logging

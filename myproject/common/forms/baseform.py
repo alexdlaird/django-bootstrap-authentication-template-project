@@ -6,6 +6,10 @@ __version__ = '0.2.0'
 
 
 class BaseForm(forms.BaseForm):
+    """
+    The abstract form from which most other form should inherit to ensure common form functionality is support.
+    """
+
     def __init__(self, *args, **kwargs):
         super(BaseForm, self).__init__(*args, **kwargs)
 

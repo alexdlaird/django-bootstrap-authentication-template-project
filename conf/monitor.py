@@ -1,5 +1,5 @@
 """
-Restart the WSGI daemon process in development when files have changed.
+Detects changes and restarts the WSGI daemon process. Should only be used in development.
 """
 
 import atexit
