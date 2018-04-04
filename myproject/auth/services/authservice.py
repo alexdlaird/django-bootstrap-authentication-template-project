@@ -6,7 +6,7 @@ import logging
 
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout, get_user_model
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from myproject.common.utils import emailutils
 from myproject.common.utils.viewutils import set_request_status

@@ -4,8 +4,8 @@ Unauthenticated general view entrance functions.
 
 import logging
 
-from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 __author__ = 'Alex Laird'
 __copyright__ = 'Copyright 2018, Alex Laird'

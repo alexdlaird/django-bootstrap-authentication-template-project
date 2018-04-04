@@ -3,7 +3,7 @@ Publicly accessible named URLs should be defined here to ensure they are properl
 """
 
 from django.contrib import sitemaps
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 __author__ = 'Alex Laird'
 __copyright__ = 'Copyright 2018, Alex Laird'

@@ -17,7 +17,7 @@ sitemaps = {
 
 urlpatterns = [
     # Top-level URLs
-    url(r'^admin/', include(admin_site.urls)),
+    url(r'^admin/', admin_site.urls),
 
     # Crawler shortcuts and placeholders
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}),
