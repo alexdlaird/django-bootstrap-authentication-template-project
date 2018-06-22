@@ -5,7 +5,7 @@ Settings specific to running tests, reading values from `.env`.
 import logging
 import os
 
-from .common import DEFAULT_TEMPLATES, DEFAULT_MIDDLEWARE, DEFAULT_INSTALLED_APPS, PIPELINE
+from conf.configs import common
 
 __author__ = 'Alex Laird'
 __copyright__ = 'Copyright 2018, Alex Laird'
@@ -16,11 +16,11 @@ BASE_DIR = os.path.normpath(os.path.join(os.path.abspath(os.path.dirname(__file_
 
 # Application definition
 
-INSTALLED_APPS = DEFAULT_INSTALLED_APPS
+INSTALLED_APPS = common.INSTALLED_APPS
 
-MIDDLEWARE = DEFAULT_MIDDLEWARE
+MIDDLEWARE = common.MIDDLEWARE
 
-TEMPLATES = DEFAULT_TEMPLATES
+TEMPLATES = common.TEMPLATES
 
 # This is an insecure password hasher, but much faster than what would be used in production
 PASSWORD_HASHERS = (
@@ -44,7 +44,7 @@ else:
 
 # Cache
 
-if os.environ.get('USE_IN_MEMORY_DB', 'True') == 'True':
+if os.environ.get('USE_IN_MEMORY_CACHE', 'True') == 'True':
     from conf.configs import dev
 
     CACHES = dev.CACHES
@@ -67,5 +67,5 @@ else:
 
 # Pipelines
 
-PIPELINE['CSS_COMPRESSOR'] = None
-PIPELINE['JS_COMPRESSOR'] = None
+common.PIPELINE['CSS_COMPRESSOR'] = None
+common.PIPELINE['JS_COMPRESSOR'] = None

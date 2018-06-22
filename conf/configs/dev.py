@@ -5,8 +5,8 @@ Settings specific to a development environment using Django's `runserver` comman
 import os
 import warnings
 
+from conf.configs import common
 from conf.settings import PROJECT_ID
-from .common import DEFAULT_TEMPLATES, DEFAULT_MIDDLEWARE, DEFAULT_INSTALLED_APPS, PIPELINE
 
 __author__ = 'Alex Laird'
 __copyright__ = 'Copyright 2018, Alex Laird'
@@ -17,15 +17,15 @@ BASE_DIR = os.path.normpath(os.path.join(os.path.abspath(os.path.dirname(__file_
 
 # Application definition
 
-INSTALLED_APPS = DEFAULT_INSTALLED_APPS + (
+INSTALLED_APPS = common.INSTALLED_APPS + (
     'debug_toolbar',
 )
 
-MIDDLEWARE = DEFAULT_MIDDLEWARE + (
+MIDDLEWARE = common.MIDDLEWARE + (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-TEMPLATES = DEFAULT_TEMPLATES
+TEMPLATES = common.TEMPLATES
 
 TEMPLATES[0]['OPTIONS']['context_processors'] += (
     'django.template.context_processors.debug',
@@ -88,7 +88,7 @@ warnings.filterwarnings('error', r"DateTimeField .* received a naive datetime", 
 
 # Cache
 
-if os.environ.get('USE_IN_MEMORY_DB', 'True') == 'True':
+if os.environ.get('USE_IN_MEMORY_CACHE', 'True') == 'True':
     CACHES = {
         'default': {
             'BACKEND': 'myproject.common.cache.locmemkeys.LocMemKeysCache',
@@ -117,5 +117,5 @@ else:
 
 # Pipelines
 
-PIPELINE['CSS_COMPRESSOR'] = None
-PIPELINE['JS_COMPRESSOR'] = None
+common.PIPELINE['CSS_COMPRESSOR'] = None
+common.PIPELINE['JS_COMPRESSOR'] = None

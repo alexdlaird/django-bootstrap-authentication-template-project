@@ -21,7 +21,6 @@ BASE_DIR = os.path.normpath(os.path.join(os.path.abspath(os.path.dirname(__file_
 # Project information
 
 PROJECT_NAME = os.environ.get('MYPROJECT_NAME')
-
 PROJECT_HOST = os.environ.get('MYPROJECT_HOST')
 
 # Version information
@@ -32,7 +31,7 @@ PROJECT_VERSION = __version__
 # Default lists for host-specific configurations
 #############################
 
-DEFAULT_INSTALLED_APPS = (
+INSTALLED_APPS = (
     # Django modules
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,7 +50,7 @@ DEFAULT_INSTALLED_APPS = (
     'myproject.myapp',
 )
 
-DEFAULT_MIDDLEWARE = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -61,7 +60,7 @@ DEFAULT_MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-DEFAULT_TEMPLATES = [{
+TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
     'APP_DIRS': True,
     'OPTIONS': {
@@ -101,9 +100,11 @@ USE_I18N = True
 USE_L10N = True
 USE_THOUSAND_SEPARATOR = True
 USE_TZ = True
-HE_DATE_STRING = "%Y-%m-%d"
-HE_TIME_STRING = "%H:%M:%S"
-HE_DATE_TIME_STRING = HE_DATE_STRING + " " + HE_TIME_STRING
+
+# DateTime sanity
+
+NORMALIZED_DATE_FORMAT = '%a, %b %d'
+NORMALIZED_DATE_TIME_FORMAT = '{} at %I:%M %p'.format(NORMALIZED_DATE_FORMAT)
 
 # Email settings
 

@@ -4,9 +4,8 @@ Settings specific to prod-like deployable code, reading values from system envir
 
 import os
 
+from conf.configs import common
 from conf.settings import PROJECT_ID
-from .common import DEFAULT_TEMPLATES, DEFAULT_MIDDLEWARE, DEFAULT_INSTALLED_APPS, DEBUG, PROJECT_NAME, \
-    ADMIN_EMAIL_ADDRESS
 
 __author__ = 'Alex Laird'
 __copyright__ = 'Copyright 2018, Alex Laird'
@@ -14,13 +13,13 @@ __version__ = '0.2.0'
 
 # Application definition
 
-INSTALLED_APPS = DEFAULT_INSTALLED_APPS
+INSTALLED_APPS = common.INSTALLED_APPS
 
-MIDDLEWARE = DEFAULT_MIDDLEWARE
+MIDDLEWARE = common.MIDDLEWARE
 
-TEMPLATES = DEFAULT_TEMPLATES
+TEMPLATES = common.TEMPLATES
 
-if DEBUG:
+if common.DEBUG:
     TEMPLATES[0]['OPTIONS']['context_processors'] += (
         'django.template.context_processors.debug',
     )
@@ -35,9 +34,9 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 # Logging
 
-if not DEBUG:
+if not common.DEBUG:
     ADMINS = (
-        (PROJECT_NAME, ADMIN_EMAIL_ADDRESS),
+        (common.PROJECT_NAME, common.ADMIN_EMAIL_ADDRESS),
     )
     MANAGERS = ADMINS
 
@@ -50,8 +49,13 @@ LOGGING = {
             'datefmt': '%Y-%m-%d %H:%M:%S'
         },
     },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        }
+    },
     'handlers': {
-        'django_log': {
+        'django': {
             'level': 'ERROR',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': '/var/log/{}/django.log'.format(PROJECT_ID),
@@ -64,7 +68,7 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler',
             'include_html': True,
         },
-        '{}_common_log'.format(PROJECT_ID): {
+        'myproject_common': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': '/var/log/{}/common.log'.format(PROJECT_ID),
@@ -72,7 +76,7 @@ LOGGING = {
             'backupCount': 3,
             'formatter': 'standard',
         },
-        '{}_auth_log'.format(PROJECT_ID): {
+        'myproject_auth': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': '/var/log/{}/auth.log'.format(PROJECT_ID),
@@ -80,7 +84,7 @@ LOGGING = {
             'backupCount': 3,
             'formatter': 'standard',
         },
-        '{}_myapp_log'.format(PROJECT_ID): {
+        'myproject_myapp': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': '/var/log/{}/myapp.log'.format(PROJECT_ID),
@@ -95,16 +99,16 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'myproject.common'.format(PROJECT_ID): {
-            'handlers': ['{}_common_log'.format(PROJECT_ID), 'mail_admins'],
+        'myproject.common': {
+            'handlers': ['myproject_common', 'mail_admins'],
             'level': 'INFO',
         },
-        'myproject.auth'.format(PROJECT_ID): {
-            'handlers': ['{}_auth_log'.format(PROJECT_ID), 'mail_admins'],
+        'myproject.auth': {
+            'handlers': ['myproject_auth', 'mail_admins'],
             'level': 'INFO',
         },
-        'myproject.myapp'.format(PROJECT_ID): {
-            'handlers': ['{}_myapp_log'.format(PROJECT_ID), 'mail_admins'],
+        'myproject.myapp': {
+            'handlers': ['myproject_myapp', 'mail_admins'],
             'level': 'INFO',
         },
     }

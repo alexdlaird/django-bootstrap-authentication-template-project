@@ -47,7 +47,7 @@ else:
 
 # Initialize some global settings
 locals()['DEV_SERVER'] = DEV_SERVER
-PROJECT_ID = os.environ.get('TWILTWIL_ID')
+PROJECT_ID = os.environ.get('MYPROJECT_ID')
 locals()['PROJECT_ID'] = PROJECT_ID
 
 # Load conf properties into the local scope
@@ -64,5 +64,3 @@ for setting in dir(common_conf_module):
 for setting in dir(conf_module):
     if setting == setting.upper():
         locals()[setting] = getattr(conf_module, setting)
-
-locals()['DEV_SERVER'] = DEV_SERVER
