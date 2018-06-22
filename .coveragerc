@@ -1,13 +1,14 @@
 [run]
 branch = True
 omit =
+    .venv/**
     conf/**
-    myproject/common/sitemaps.py
-    myproject/common/cache/locmemkeys.py
     */admin.py
     */apps.py
     */tests/**
     */migrations/**
+    myproject/common/sitemaps.py
+    myproject/common/cache/locmemkeys.py
 
 [report]
 fail_under = 90
