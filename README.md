@@ -7,7 +7,7 @@ Django Bootstrap/Authentication Template Project
 ================
 
 ## Prerequisites
-* Python (>= 2.7, >= 3.6)
+* Python (>= 2.7, >= 3.5)
 * Pip (>= 9.0)
 
 ## Getting Started
