@@ -12,8 +12,8 @@ env:
 
 virtualenv:
 	@if [ ! -d "$(MYPROJECT_VENV)" ]; then \
-		python3 -m pip install virtualenv; \
-        python3 -m virtualenv $(MYPROJECT_VENV); \
+		python -m pip install virtualenv; \
+        python -m virtualenv $(MYPROJECT_VENV); \
 	fi
 
 install: env virtualenv
@@ -21,7 +21,7 @@ install: env virtualenv
 		source $(MYPROJECT_VENV)/bin/activate; \
 		python -m pip install -r requirements.txt; \
 	)
-	@python3 -m pip install "heliumcli>=1.2" "ansible>=2.5"
+	@python -m pip install "heliumcli>=1.2" "ansible>=2.5"
 
 build: virtualenv
 	@( \
