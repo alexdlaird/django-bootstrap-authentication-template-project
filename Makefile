@@ -43,7 +43,7 @@ migrate: virtualenv
 
 test: virtualenv
 	@if [ ! -f ansible/stage.yml ]; then echo "ansible/stage.yml not found" & exit 1 ; fi
-	@if [ ! -f ansible/group_vars/stage.yml ]; then echo "ansible/group_vars/stage.yml not found" & exit 1 ; fi
+	@if [ ! -f ansible/group_vars/web.yml ]; then echo "ansible/group_vars/web.yml not found" & exit 1 ; fi
 	@if [ ! -f ansible/hosts/stage ]; then echo "ansible/hosts/stage not found" & exit 1 ; fi
 
 	@python -c "import heliumcli" || (echo "helium-cli not installed"; exit 1)
