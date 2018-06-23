@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/alexdlaird/django-bootstrap-authentication-template-project.svg?branch=master)](https://travis-ci.org/alexdlaird/django-bootstrap-authentication-template-project)
 [![codecov](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project)
-[![Updates](https://pyup.io/repos/github/HeliumEdu/heliumcli/shield.svg)](https://pyup.io/repos/github/HeliumEdu/heliumcli/)
+[![Updates](https://pyup.io/repos/github/alexdlaird/django-bootstrap-authentication-template-project/shield.svg)](https://pyup.io/repos/github/alexdlaird/django-bootstrap-authentication-template-project/)
 
 
 Django Bootstrap/Authentication Template Project
