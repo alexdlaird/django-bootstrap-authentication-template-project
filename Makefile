@@ -8,7 +8,7 @@ all: env virtualenv install build migrate test
 env:
 	cp -n .env.example .env | true
 	cp -n ansible/group_vars/stage.yml.example ansible/group_vars/stage.yml | true
-	cp -n ansible/hosts/stage.example .ansible/hosts/stage | true
+	cp -n ansible/hosts/stage.example ansible/hosts/stage | true
 
 virtualenv:
 	@if [ ! -d "$(MYPROJECT_VENV)" ]; then \
