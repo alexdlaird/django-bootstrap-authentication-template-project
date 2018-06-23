@@ -7,7 +7,7 @@
     update_cache: yes
     mode: 0644
 
-- name: Install packages
+- name: Install Apache packages
   become: yes
   apt:
     pkg: "{{ item }}"
@@ -15,7 +15,26 @@
     update_cache: yes
   with_items:
     - apache2
+
+- name: Install mod-wsgi-py2 package
+  become: yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
     - libapache2-mod-wsgi
+  when: python_bin is undefined or python_bin == 'python'
+
+- name: Install mod-wsgi-py3 package
+  become: yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - libapache2-mod-wsgi-py3
+  when: python_bin is defined and python_bin == 'python3'
 
 - name: Creates SSL directory
   become: yes

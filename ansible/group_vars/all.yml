@@ -19,6 +19,7 @@ default_env_vars:
   ENVIRONMENT: "{{ domain_environment }}"
   LANG: "en_US.UTF-8"
   LC_ALL: "en_US.UTF-8"
+  PYTHON_BIN: "{{ python_bin | default('python') }}"
   MYPROJECT_DEVELOPER: "{{ project_developer }}"
   MYPROJECT_ID: "{{ project_id }}"
   MYPROJECT_NAME: "{{ project_name }}"
