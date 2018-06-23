@@ -10,5 +10,5 @@
     - { role: redis }
 
     # Projects
-    - { role: myproject-web, download_code: False }
+    - { role: myproject-web }
   environment: "{{ env_vars }}"

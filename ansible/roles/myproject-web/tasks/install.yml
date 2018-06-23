@@ -1,5 +1,6 @@
 ---
 - name: Install
+  become: yes
   make:
     chdir: "{{ code_directory }}"
     target: install

@@ -1,3 +1,9 @@
+- name: Check if letsencrypt certs already installed
+  become: yes
+  stat:
+    path: "/etc/letsencrypt/live/{{ web_host }}"
+  register: letsencrypt_certs_exist
+
 - name: Setup Python/Django Apache conf
   template:
     src: "../../apache/templates/python.django.conf"
@@ -11,6 +17,7 @@
     alias_urls: "{{ web_host_alias }}"
     srv_dir: "{{ web_root }}"
     env: "{{ web_env_vars }}"
+    ssl_exists: "{{ letsencrypt_certs_exist.stat.exists }}"
   notify: reload apache
   tags:
      - conf

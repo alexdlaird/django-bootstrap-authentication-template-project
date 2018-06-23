@@ -26,13 +26,6 @@
     encoding: utf8
     collation: utf8_general_ci
 
-- import_tasks: server.yml
-  when: web_node is undefined or web_node
-  tags:
-    - ssl
-    - conf
-    - envvars
-
 - name: Create directory
   file:
     path: "{{ project_root }}/web"
@@ -71,6 +64,13 @@
   tags:
     - code
 
+- import_tasks: server.yml
+  when: web_node is undefined or web_node
+  tags:
+    - ssl
+    - conf
+    - envvars
+
 - name: Ensure Apache is reloaded
   become: yes
   service:
@@ -81,12 +81,3 @@
     - code
     - conf
     - envvars
-
-- name: Ensure Supervisor is restarted
-  become: yes
-  service:
-    name: supervisor
-    state: restarted
-  when: web_node is defined and not web_node
-  tags:
-    - code

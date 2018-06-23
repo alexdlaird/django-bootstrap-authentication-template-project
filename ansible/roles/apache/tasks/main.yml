@@ -15,7 +15,7 @@
     update_cache: yes
   with_items:
     - apache2
-    - libapache2-mod-wsgi-py3
+    - libapache2-mod-wsgi
 
 - name: Creates SSL directory
   become: yes
@@ -73,7 +73,7 @@
     regexp: '^export APACHE_RUN_USER=www-data$'
     replace: 'export APACHE_RUN_USER={{ ansible_user }}'
     backup: yes
-  notify: restart apache
+  notify: reload apache
   tags:
      - envvars
 

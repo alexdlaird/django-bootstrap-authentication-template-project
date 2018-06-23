@@ -16,7 +16,7 @@
     remote_src: yes
 
 - name: Move extracted to staging directory
-  command: "mv {{ project_root }}/web-{{ build_version | default('master') }} {{ code_directory }}"
+  command: "mv {{ project_root }}/django-bootstrap-authentication-template-project-{{ build_version | default('master') }} {{ code_directory }}"
 
 - name: Delete artifact
   file:
