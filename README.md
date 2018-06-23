@@ -50,12 +50,24 @@ make test
 
 ### Development
 To get started with minimal effort, assuming you have followed the "Getting Started" directions above, you should have the ENVIRONMENT environment
-variable set to "dev".
+variable set to "dev". For convenience, [helium-cli](https://github.com/HeliumEdu/heliumcli#readme), which is compatible with this project and
+provides a useful set of tools for maintaining, building, and deploying the code, has also been installed.
 
-Now you're all set! To start the development server, execute:
+To start a local server, execute:
 
 ```
-bin/runserver
+helium-cli start-servers
 ```
 
 A development server will be started at http://localhost:8000.
+
+You can also deploy builds of the code using `helium-cli`, for instance, to deploy `master` to `stage`, execute:
+
+```
+helium-cli deploy-build master stage
+```
+
+[Ansible](https://www.ansible.com/) deployment scripts can be found in the `ansible` directory.
+
+As a starting point for using this project as a template for a new project, search for usages of "MYPROJECT" and
+begin refactoring from there.
