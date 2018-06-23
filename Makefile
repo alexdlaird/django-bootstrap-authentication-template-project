@@ -21,7 +21,7 @@ install: env virtualenv
 		source $(MYPROJECT_VENV)/bin/activate; \
 		python -m pip install -r requirements.txt; \
 	)
-	@python -m pip install "heliumcli>=1.2" "ansible>=2.5"
+	@python -m pip install "heliumcli>=1.2.2" "ansible>=2.5"
 
 build: virtualenv
 	@( \
