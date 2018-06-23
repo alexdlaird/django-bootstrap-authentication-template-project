@@ -2,6 +2,7 @@
 
 SHELL := /usr/bin/env bash
 MYPROJECT_VENV ?= .venv
+PYTHON_BIN ?= python
 
 all: env virtualenv install build migrate test
 
@@ -12,8 +13,8 @@ env:
 
 virtualenv:
 	@if [ ! -d "$(MYPROJECT_VENV)" ]; then \
-		python -m pip install virtualenv; \
-        python -m virtualenv $(MYPROJECT_VENV); \
+		$(PYTHON_BIN) -m pip install virtualenv; \
+		$(PYTHON_BIN) -m virtualenv $(MYPROJECT_VENV); \
 	fi
 
 install: env virtualenv
@@ -21,7 +22,7 @@ install: env virtualenv
 		source $(MYPROJECT_VENV)/bin/activate; \
 		python -m pip install -r requirements.txt; \
 	)
-	@python -m pip install "heliumcli>=1.2.2" "ansible>=2.5"
+	@$(PYTHON_BIN) -m pip install "heliumcli>=1.2.2" "ansible>=2.5"
 
 build: virtualenv
 	@( \
@@ -46,7 +47,7 @@ test: virtualenv
 	@if [ ! -f ansible/group_vars/web.yml ]; then echo "ansible/group_vars/web.yml not found" & exit 1 ; fi
 	@if [ ! -f ansible/hosts/stage ]; then echo "ansible/hosts/stage not found" & exit 1 ; fi
 
-	@python -c "import heliumcli" || (echo "helium-cli not installed"; exit 1)
+	@$(PYTHON_BIN) -c "import heliumcli" || (echo "helium-cli not installed"; exit 1)
 
 	@ansible-playbook ansible/stage.yml --syntax-check
 
