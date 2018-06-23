@@ -42,6 +42,14 @@ migrate: virtualenv
 	)
 
 test: virtualenv
+	@if [ ! -f ansible/stage.yml ]; then echo "ansible/stage.yml not found" & exit 1 ; fi
+	@if [ ! -f ansible/group_vars/stage.yml ]; then echo "ansible/group_vars/stage.yml not found" & exit 1 ; fi
+	@if [ ! -f ansible/hosts/stage ]; then echo "ansible/hosts/stage not found" & exit 1 ; fi
+
+	@python -c "import heliumcli" || (echo "helium-cli not installed"; exit 1)
+
+	@ansible-playbook ansible/stage.yml --syntax-check
+
 	@( \
 		source $(MYPROJECT_VENV)/bin/activate; \
 		python -m coverage run --source='.' manage.py test && python -m coverage html; \
