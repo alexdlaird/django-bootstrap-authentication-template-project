@@ -3,8 +3,8 @@ domain_environment: "stage"
 
 myproject_host: "host.example.com"
 
-web_host: "api.{{ myproject_host }}"
-web_host_alias: "www.api.{{ web_host }}"
+web_host: "{{ myproject_host }}"
+web_host_alias: "www.{{ web_host }}"
 web_ssl: True
 web_host_protocol: "https://"
 myproject_db_host: "localhost"
