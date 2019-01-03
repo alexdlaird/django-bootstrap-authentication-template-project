@@ -1,5 +1,5 @@
 from django.conf import settings as config
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import RedirectView, TemplateView
 
