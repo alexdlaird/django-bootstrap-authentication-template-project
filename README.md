@@ -3,8 +3,7 @@
 [![Updates](https://pyup.io/repos/github/alexdlaird/django-bootstrap-authentication-template-project/shield.svg)](https://pyup.io/repos/github/alexdlaird/django-bootstrap-authentication-template-project/)
 [![Python 3](https://pyup.io/repos/github/alexdlaird/django-bootstrap-authentication-template-project/python-3-shield.svg)](https://pyup.io/repos/github/alexdlaird/django-bootstrap-authentication-template-project/)
 
-Django Bootstrap/Authentication Template Project
-================
+# Django Bootstrap/Authentication Template Project
 
 ## Prerequisites
 
@@ -60,7 +59,7 @@ To start a local server, execute:
 helium-cli start-servers
 ```
 
-A development server will be started at http://localhost:8000.
+A development server will be started at <http://localhost:8000>.
 
 You can also deploy builds of the code using `helium-cli`, for instance, to deploy `master` to `stage`, execute:
 
