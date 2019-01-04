@@ -3,13 +3,13 @@
 [![Updates](https://pyup.io/repos/github/alexdlaird/django-bootstrap-authentication-template-project/shield.svg)](https://pyup.io/repos/github/alexdlaird/django-bootstrap-authentication-template-project/)
 [![Python 3](https://pyup.io/repos/github/alexdlaird/django-bootstrap-authentication-template-project/python-3-shield.svg)](https://pyup.io/repos/github/alexdlaird/django-bootstrap-authentication-template-project/)
 
-
 Django Bootstrap/Authentication Template Project
 ================
 
 ## Prerequisites
-* Python (>= 2.7, >= 3.5)
-* Pip (>= 9.0)
+
+  - Python (>= 2.7, >= 3.5)
+  - Pip (>= 9.0)
 
 ## Getting Started
 The project is developed using [Python](https://www.python.org/), [Django](https://www.djangoproject.com), and [Bootstrap](http://getbootstrap.com/docs/3.3/).
@@ -19,13 +19,13 @@ This repository contains the source code for a Django Bootstrap/Authentication T
 ### Project Setup
 To setup the Python/Django build environment, execute:
 
-```
+```sh
 make install
 ```
 
 This project is configured to work with a Virtualenv which has now been setup in the .venv folder. If you're unfamiliar with how this works, read up on Virtualenv here. The short version is, virtualenv creates isolated environments for each project's dependencies. To activate and use this environment when developing, execute:
 
-```
+```sh
 source .venv/bin/activate
 ```
 
@@ -33,19 +33,19 @@ All commands below will now be run within the virtualenv (though `make` commands
 
 To ensure the database is in sync with the latest schema, database migrations are generated and run with Django. To run migrations, execute:
 
-```
+```sh
 make migrate
 ```
 
 Once migrations have been run, you can create a super user, which is a standard user that also has access to the /admin site.
 
-```
+```sh
 python manage.py createsuperuser
 ```
 
 Before commits are made, be sure to run tests and check the generated coverage report.
 
-```
+```sh
 make test
 ```
 
@@ -56,7 +56,7 @@ provides a useful set of tools for maintaining, building, and deploying the code
 
 To start a local server, execute:
 
-```
+```sh
 helium-cli start-servers
 ```
 
@@ -64,7 +64,7 @@ A development server will be started at http://localhost:8000.
 
 You can also deploy builds of the code using `helium-cli`, for instance, to deploy `master` to `stage`, execute:
 
-```
+```sh
 helium-cli deploy-build master stage
 ```
 
