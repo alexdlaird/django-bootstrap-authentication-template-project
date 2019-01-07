@@ -9,9 +9,9 @@ import signal
 import sys
 import threading
 
-__author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2018, Alex Laird'
-__version__ = '0.2.0'
+__author__ = "Alex Laird"
+__copyright__ = "Copyright 2018, Alex Laird"
+__version__ = "0.2.0"
 
 _interval = 1.0
 _times = {}

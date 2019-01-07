@@ -7,9 +7,9 @@ from myproject.common.admin import admin_site
 from myproject.common.sitemaps import StaticViewSitemap
 from myproject.common.views import home
 
-__author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2018, Alex Laird'
-__version__ = '0.3.1'
+__author__ = "Alex Laird"
+__copyright__ = "Copyright 2018, Alex Laird"
+__version__ = "0.3.1"
 
 sitemaps = {
     'static': StaticViewSitemap,

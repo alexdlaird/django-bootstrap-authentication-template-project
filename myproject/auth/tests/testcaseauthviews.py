@@ -4,9 +4,9 @@ from django.urls import reverse
 
 from myproject.auth.tests.helpers import userhelper
 
-__author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2018, Alex Laird'
-__version__ = '0.2.0'
+__author__ = "Alex Laird"
+__copyright__ = "Copyright 2018, Alex Laird"
+__version__ = "0.2.0"
 
 
 class TestCaseAuthViews(TestCase):

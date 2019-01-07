@@ -2,9 +2,9 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 
-__author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2018, Alex Laird'
-__version__ = '0.2.0'
+__author__ = "Alex Laird"
+__copyright__ = "Copyright 2018, Alex Laird"
+__version__ = "0.2.0"
 
 
 def send_multipart_email(template_name, context, subject, to, bcc=None):

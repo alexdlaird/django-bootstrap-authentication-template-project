@@ -12,9 +12,9 @@ import myproject.auth.urls
 import myproject.common.urls
 import myproject.myapp.urls
 
-__author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2018, Alex Laird'
-__version__ = '0.2.0'
+__author__ = "Alex Laird"
+__copyright__ = "Copyright 2018, Alex Laird"
+__version__ = "0.2.0"
 
 urlpatterns = [
     # Include app-specific URL files

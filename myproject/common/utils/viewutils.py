@@ -4,9 +4,9 @@ install_aliases()
 
 from urllib.parse import unquote
 
-__author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2018, Alex Laird'
-__version__ = '0.2.0'
+__author__ = "Alex Laird"
+__copyright__ = "Copyright 2018, Alex Laird"
+__version__ = "0.2.0"
 
 
 def set_request_status(request, status_type, message):

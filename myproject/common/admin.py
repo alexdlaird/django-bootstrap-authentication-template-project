@@ -2,9 +2,9 @@ from django.conf import settings
 from django.contrib.admin import ModelAdmin
 from django.contrib.admin.sites import AdminSite
 
-__author__ = 'Alex Laird'
-__copyright__ = 'Copyright 2018, Alex Laird'
-__version__ = '0.2.0'
+__author__ = "Alex Laird"
+__copyright__ = "Copyright 2018, Alex Laird"
+__version__ = "0.2.0"
 
 
 class MyProjectAdminSite(AdminSite):
