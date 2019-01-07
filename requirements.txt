@@ -2,7 +2,7 @@ six==1.11.0
 future==0.16.0
 coverage==4.5.1
 codecov==2.0.15
-django==1.11.15
+django==1.11.18
 django-pipeline==1.6.14
 django-widget-tweaks==1.4.2
 django-dotenv==1.4.2
