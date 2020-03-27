@@ -119,3 +119,7 @@ else:
 
 common.PIPELINE['CSS_COMPRESSOR'] = None
 common.PIPELINE['JS_COMPRESSOR'] = None
+
+# Server
+
+USE_NGROK = os.environ.get('USE_NGROK', 'False') == 'True'

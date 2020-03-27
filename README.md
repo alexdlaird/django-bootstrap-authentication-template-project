@@ -61,6 +61,9 @@ helium-cli start-servers
 
 A development server will be started at <http://localhost:8000>.
 
+If the `USE_NGROK` environment variable is set when a dev server is started (using `runserver`, [pyngrok](https://github.com/alexdlaird/pyngrok)
+will be used to open a `ngrok` tunnel. This is especially useful when using webhooks.
+
 You can also deploy builds of the code using `helium-cli`, for instance, to deploy `master` to `stage`, execute:
 
 ```sh
