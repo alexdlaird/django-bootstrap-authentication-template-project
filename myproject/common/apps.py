@@ -1,5 +1,3 @@
-import os
-
 from future.moves import sys
 from future.standard_library import install_aliases
 
