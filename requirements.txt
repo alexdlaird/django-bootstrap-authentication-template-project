@@ -8,6 +8,6 @@ django-widget-tweaks==1.4.8
 django-dotenv==1.4.2
 django-debug-toolbar==1.11
 mysqlclient==1.4.6
-django-redis==4.10.0
+django-redis==4.12.1
 pytz==2020.1
 pyngrok==4.0.0
