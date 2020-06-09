@@ -3,7 +3,7 @@ future==0.18.2
 coverage==5.1
 codecov==2.1.4
 django==1.11.29
-django-pipeline==2.0.4
+django-pipeline==1.7.0
 django-widget-tweaks==1.4.8
 django-dotenv==1.4.2
 django-debug-toolbar==1.11
