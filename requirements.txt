@@ -6,7 +6,7 @@ django==1.11.29
 django-pipeline==1.7.0
 django-widget-tweaks==1.4.8
 django-dotenv==1.4.2
-django-debug-toolbar==1.11
+django-debug-toolbar==2.2
 mysqlclient==1.4.6
 django-redis==4.10.0
 pytz==2020.1
