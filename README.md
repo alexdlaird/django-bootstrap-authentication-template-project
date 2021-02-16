@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.com/alexdlaird/django-bootstrap-authentication-template-project.svg?branch=master)](https://travis-ci.com/alexdlaird/django-bootstrap-authentication-template-project)
-[![codecov](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project)
+[![CI/CD](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/workflows/CI/CD/badge.svg)](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/actions?query=workflow%3ACI%2FCD)
+[![Codecov](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project)
+![GitHub License](https://img.shields.io/github/license/alexdlaird/django-bootstrap-authentication-template-project)
 
 # Django Bootstrap/Authentication Template Project
 
