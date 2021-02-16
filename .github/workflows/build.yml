@@ -25,12 +25,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: |
+        run:
           make install
       - name: Run tests
-        run: |
+        run:
           make test
-        shell: bash
       - name: Upload coverage
         if: matrix.python-version == '3.9'
         uses: codecov/codecov-action@v1
