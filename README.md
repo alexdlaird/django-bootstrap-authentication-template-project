@@ -1,5 +1,5 @@
 [![CI/CD](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/workflows/CI/CD/badge.svg)](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/actions?query=workflow%3ACI%2FCD)
-[![Codecov](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project)
+[![Codecov](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project/branch/main/graph/badge.svg)](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project)
 ![GitHub License](https://img.shields.io/github/license/alexdlaird/django-bootstrap-authentication-template-project)
 
 # Django Bootstrap/Authentication Template Project
@@ -63,10 +63,10 @@ A development server will be started at <http://localhost:8000>.
 If the `USE_NGROK` environment variable is set when a dev server is started (using `runserver`, [pyngrok](https://github.com/alexdlaird/pyngrok)
 will be used to open a `ngrok` tunnel. This is especially useful when using webhooks.
 
-You can also deploy builds of the code using `helium-cli`, for instance, to deploy `master` to `stage`, execute:
+You can also deploy builds of the code using `helium-cli`, for instance, to deploy `main` to `stage`, execute:
 
 ```sh
-helium-cli deploy-build master stage
+helium-cli deploy-build main stage
 ```
 
 [Ansible](https://www.ansible.com/) deployment scripts can be found in the `ansible` directory.
