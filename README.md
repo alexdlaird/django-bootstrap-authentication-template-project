@@ -1,4 +1,4 @@
-[![CI/CD](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/workflows/CI/CD/badge.svg)](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/actions?query=workflow%3ACI%2FCD)
+[![Build](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/workflows/build.yml/badge.svg)](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/actions/workflows/build.yml)
 [![Codecov](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project/branch/main/graph/badge.svg)](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project)
 ![GitHub License](https://img.shields.io/github/license/alexdlaird/django-bootstrap-authentication-template-project)
 
