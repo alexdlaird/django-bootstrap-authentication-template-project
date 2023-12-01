@@ -1,4 +1,4 @@
-[![Build](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/workflows/build.yml/badge.svg)](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/actions/workflows/build.yml)
+[![Build](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/actions/workflows/build.yml/badge.svg)](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/actions/workflows/build.yml)
 [![Codecov](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project/branch/main/graph/badge.svg)](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project)
 ![GitHub License](https://img.shields.io/github/license/alexdlaird/django-bootstrap-authentication-template-project)
 
@@ -6,7 +6,7 @@
 
 ## Prerequisites
 
-- Python (>= 2.7, >= 3.5)
+- Python (>= 3.5)
 - Pip (>= 9.0)
 
 ## Getting Started
