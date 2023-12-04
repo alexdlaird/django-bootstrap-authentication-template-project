@@ -1,7 +1,3 @@
-from future.standard_library import install_aliases
-
-install_aliases()
-
 from urllib.parse import unquote
 
 __author__ = "Alex Laird"

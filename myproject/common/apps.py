@@ -1,8 +1,3 @@
-from future.moves import sys
-from future.standard_library import install_aliases
-
-install_aliases()
-
 from urllib.parse import urlparse
 
 from django.apps import AppConfig
