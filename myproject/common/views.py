@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 def home(request):
     redirect = reverse('login')
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         redirect = reverse('portal')
 
     return HttpResponseRedirect(redirect)

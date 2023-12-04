@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 def register(request):
     redirect = None
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         redirect = reverse('portal')
 
     if request.method == 'POST':
@@ -65,7 +65,7 @@ def login(request):
     status = None
 
     user_login_form = UserLoginForm()
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         redirect = reverse('portal')
     else:
         if request.method == 'POST':
@@ -101,7 +101,7 @@ def login(request):
 
 
 def logout(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         authservice.process_logout(request)
 
     return HttpResponseRedirect(reverse('portal'))
@@ -111,7 +111,7 @@ def forgot(request):
     redirect = None
     status = None
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         redirect = reverse('settings')
     else:
         if request.method == 'POST':
