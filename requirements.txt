@@ -4,7 +4,7 @@ django-pipeline==2.1.0
 django-widget-tweaks==1.4.9
 django-dotenv==1.4.2
 django-debug-toolbar==3.2.4
-mysqlclient==2.1.1
+mysqlclient==2.2.1
 django-redis==4.12.1
 pytz==2023.3
 pyngrok==7.0.3
