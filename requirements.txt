@@ -7,4 +7,4 @@ django-debug-toolbar==4.3.0
 mysqlclient==2.2.1
 django-redis==5.4.0
 pytz==2024.1
-pyngrok==7.0.5
+pyngrok==7.1.0
