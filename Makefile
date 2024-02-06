@@ -1,4 +1,4 @@
-.PHONY: all env virtualenv install build build-migrations migrate test
+.PHONY: all env virtualenv install nopyc clean build build-migrations migrate test
 
 SHELL := /usr/bin/env bash
 MYPROJECT_VENV ?= .venv
@@ -23,6 +23,13 @@ install: env virtualenv
 		python -m pip install -r requirements.txt; \
 	)
 	@$(PYTHON_BIN) -m pip install "heliumcli>=1.2.2" "ansible>=2.5"
+
+nopyc:
+	find . -name '*.pyc' | xargs rm -f || true
+	find . -name __pycache__ | xargs rm -rf || true
+
+clean: nopyc
+	rm -rf _build $(PLATFORM_VENV)
 
 build: virtualenv
 	@( \
