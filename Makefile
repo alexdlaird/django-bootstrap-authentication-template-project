@@ -22,7 +22,7 @@ install: env virtualenv
 		source $(MYPROJECT_VENV)/bin/activate; \
 		python -m pip install -r requirements.txt -r requirements-dev.txt; \
 	)
-	@$(PYTHON_BIN) -m pip install "heliumcli>=1.2.2" "ansible>=2.5"
+	@$(PYTHON_BIN) -m pip install "heliumcli>=1.6.13"
 
 nopyc:
 	find . -name '*.pyc' | xargs rm -f || true
