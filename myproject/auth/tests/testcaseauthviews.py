@@ -118,7 +118,7 @@ class TestCaseAuthViews(TestCase):
         userhelper.verify_user_not_logged_in(self)
 
         # WHEN
-        response = self.client.post(reverse('login') + '?next={}'.format(reverse('settings')),
+        response = self.client.post(reverse('login') + f"?next={reverse('settings')}",
                                     {'username': user.get_username(), 'password': 'test_pass_1!',
                                      'remember-me': 'remember-me'})
 
@@ -182,6 +182,6 @@ class TestCaseAuthViews(TestCase):
         response2 = self.client.get(reverse('settings'))
 
         # THEN
-        self.assertRedirects(response1, reverse('login') + '?next={}'.format(reverse('settings')),
+        self.assertRedirects(response1, reverse('login') + f"?next={reverse('settings')}",
                              fetch_redirect_response=False)
         self.assertEqual(response2.status_code, 200)

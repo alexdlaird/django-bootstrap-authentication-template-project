@@ -31,25 +31,25 @@ nopyc:
 clean: nopyc
 	rm -rf _build $(PLATFORM_VENV)
 
-build: virtualenv
+build: install
 	@( \
 		source $(MYPROJECT_VENV)/bin/activate; \
 		python manage.py collectstatic --noinput; \
 	)
 
-build-migrations: env virtualenv install
+build-migrations: install
 	@( \
 		source $(MYPROJECT_VENV)/bin/activate; \
 		python manage.py makemigrations; \
 	)
 
-migrate: virtualenv
+migrate: install
 	@( \
 		source $(MYPROJECT_VENV)/bin/activate; \
 		python manage.py migrate; \
 	)
 
-test: virtualenv
+test: install
 	@if [ ! -f ansible/stage.yml ]; then echo "ansible/stage.yml not found" & exit 1 ; fi
 	@if [ ! -f ansible/group_vars/web.yml ]; then echo "ansible/group_vars/web.yml not found" & exit 1 ; fi
 	@if [ ! -f ansible/hosts/stage ]; then echo "ansible/hosts/stage not found" & exit 1 ; fi

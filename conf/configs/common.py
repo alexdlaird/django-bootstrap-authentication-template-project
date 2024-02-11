@@ -103,7 +103,7 @@ USE_TZ = True
 # DateTime sanity
 
 NORMALIZED_DATE_FORMAT = '%a, %b %d'
-NORMALIZED_DATE_TIME_FORMAT = '{} at %I:%M %p'.format(NORMALIZED_DATE_FORMAT)
+NORMALIZED_DATE_TIME_FORMAT = f'{NORMALIZED_DATE_FORMAT} at %I:%M %p'
 
 # Email settings
 
@@ -113,7 +113,7 @@ SERVER_EMAIL = ADMIN_EMAIL_ADDRESS
 EMAIL_USE_TLS = os.environ.get('MYPROJECT_EMAIL_USE_TLS', 'True') == 'True'
 EMAIL_PORT = os.environ.get('MYPROJECT_EMAIL_PORT')
 EMAIL_ADDRESS = os.environ.get('MYPROJECT_CONTACT_EMAIL')
-DEFAULT_FROM_EMAIL = '{} <{}>'.format(PROJECT_NAME, EMAIL_ADDRESS)
+DEFAULT_FROM_EMAIL = f'{PROJECT_NAME} <{EMAIL_ADDRESS}>'
 EMAIL_HOST = os.environ.get('MYPROJECT_EMAIL_HOST')
 
 EMAIL_HOST_USER = os.environ.get('MYPROJECT_EMAIL_HOST_USER')
@@ -177,7 +177,7 @@ PIPELINE = {
                 'js/vendors/moment.js',
                 'js/vendors/moment-timezone.js',
             ),
-            'output_filename': 'js/{}_{}.min.js'.format(PROJECT_ID, PROJECT_VERSION)
+            'output_filename': f'js/{PROJECT_ID}_{PROJECT_VERSION}.min.js'
         },
     }
 }

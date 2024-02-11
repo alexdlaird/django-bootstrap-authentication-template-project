@@ -64,7 +64,7 @@ LOGGING = {
         'django': {
             'level': 'ERROR',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/{}/django.log'.format(PROJECT_ID),
+            'filename': f'/var/log/{PROJECT_ID}/django.log',
             'maxBytes': 50000000,
             'backupCount': 3,
             'formatter': 'standard',
@@ -72,7 +72,7 @@ LOGGING = {
         'myproject_common': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/{}/common.log'.format(PROJECT_ID),
+            'filename': f'/var/log/{PROJECT_ID}/common.log',
             'maxBytes': 50000000,
             'backupCount': 3,
             'formatter': 'standard',
@@ -80,7 +80,7 @@ LOGGING = {
         'myproject_auth': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/{}/auth.log'.format(PROJECT_ID),
+            'filename': f'/var/log/{PROJECT_ID}/auth.log',
             'maxBytes': 50000000,
             'backupCount': 3,
             'formatter': 'standard',
@@ -88,7 +88,7 @@ LOGGING = {
         'myproject_myapp': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/{}/myapp.log'.format(PROJECT_ID),
+            'filename': f'/var/log/{PROJECT_ID}/myapp.log',
             'maxBytes': 50000000,
             'backupCount': 3,
             'formatter': 'standard',

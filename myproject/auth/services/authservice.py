@@ -26,7 +26,7 @@ def process_register(request, user):
     :param user: the user that has been created
     :return: a redirect to the next page in the registration flow
     """
-    logger.info('Registered new user with username: {}'.format(user.get_username()))
+    logger.info(f'Registered new user with username: {user.get_username()}')
 
     emailutils.send_multipart_email('email/register',
                                     {
@@ -34,7 +34,7 @@ def process_register(request, user):
                                         'site_url': settings.PROJECT_HOST,
                                         'login_url': reverse('login'),
                                     },
-                                    'Welcome to {}'.format(settings.PROJECT_NAME), [user.email],
+                                    f'Welcome to {settings.PROJECT_NAME}', [user.email],
                                     [settings.DEFAULT_FROM_EMAIL])
 
     set_request_status(request, 'info', 'You\'re good to go. Login to get started!')
@@ -57,7 +57,7 @@ def process_login(request, username, password):
     if user is not None:
         login(request, user)
 
-        logger.info('Logged in user {}'.format(username))
+        logger.info(f'Logged in user {username}')
 
         if request.POST.get('remember-me', False):
             request.session.set_expiry(1209600)
@@ -68,7 +68,7 @@ def process_login(request, username, password):
         else:
             redirect = reverse('portal')
     else:
-        logger.info('Non-existent user {} attempted login'.format(username))
+        logger.info(f'Non-existent user {username} attempted login')
 
         set_request_status(request, 'warning',
                            'Oops! We don\'t recognize that account. Check to make sure you entered your '
@@ -85,7 +85,7 @@ def process_logout(request):
     """
     email = request.user.email
     logout(request)
-    logger.info('Logged out user {}'.format(email))
+    logger.info(f'Logged out user {email}')
 
 
 def process_forgot_password(request):
@@ -105,7 +105,7 @@ def process_forgot_password(request):
         user.set_password(password)
         user.save()
 
-        logger.info('Reset password for user with email {}'.format(email))
+        logger.info(f'Reset password for user with email {email}')
 
         emailutils.send_multipart_email('email/forgot',
                                         {
@@ -117,7 +117,7 @@ def process_forgot_password(request):
 
         request.session.modified = True
     except get_user_model().DoesNotExist:
-        logger.info('A visitor tried to reset the password for an unknown email address of {}'.format(email))
+        logger.info(f'A visitor tried to reset the password for an unknown email address of {email}')
 
     set_request_status(request, 'info',
                        'You\'ve been emailed a temporary password. Login to your account immediately using the '
