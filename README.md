@@ -1,6 +1,6 @@
-[![Build](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/actions/workflows/build.yml/badge.svg)](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/actions/workflows/build.yml)
-[![Codecov](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project/branch/main/graph/badge.svg)](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project)
 ![Python Versions](https://img.shields.io/badge/python-%203.9%20|%203.10%20|%203.11%20-blue)
+[![Coverage](https://img.shields.io/codecov/c/github/alexdlaird/django-bootstrap-authentication-template-project)](https://codecov.io/gh/alexdlaird/django-bootstrap-authentication-template-project)
+[![Build](https://img.shields.io/github/actions/workflow/status/alexdlaird/django-bootstrap-authentication-template-project/build.yml)](https://github.com/alexdlaird/django-bootstrap-authentication-template-project/actions/workflows/build.yml)
 ![GitHub License](https://img.shields.io/github/license/alexdlaird/django-bootstrap-authentication-template-project)
 
 # Django Bootstrap/Authentication Template Project
