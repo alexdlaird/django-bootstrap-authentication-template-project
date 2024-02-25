@@ -4,6 +4,11 @@ labels: ["enhancement"]
 
 body:
 
+- type: markdown
+  attributes:
+    value: |
+      Consider [supporting the project](https://github.com/sponsors/alexdlaird) to have your request prioritized.
+
 - type: checkboxes
   id: ack
   attributes:
