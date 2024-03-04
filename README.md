@@ -5,10 +5,6 @@
 
 # Django Bootstrap/Authentication Template Project
 
-## Prerequisites
-
-- Python (>= 3.9)
-
 ## Getting Started
 The project is developed using [Python](https://www.python.org/), [Django](https://www.djangoproject.com), and [Bootstrap](http://getbootstrap.com/docs/3.3/).
 
