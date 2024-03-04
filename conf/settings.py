@@ -10,13 +10,11 @@ Note that the system environment variable ENVIRONMENT should be set to a slug th
 All configuration files first read `common.py` before applying deployment-specific configurations.
 """
 
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 import os
 import sys
-from builtins import str
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.3.0"
 
 # Are we running on the dev server
 DEV_SERVER = False

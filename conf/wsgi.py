@@ -2,14 +2,13 @@
 WSGI configuration for Django environment.
 """
 
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 import os
 
 from django.conf import settings
 from django.core.wsgi import get_wsgi_application
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.2.0"
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "conf.settings")
 

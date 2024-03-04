@@ -2,6 +2,9 @@
 Base URL configuration.
 """
 
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 import sys
 
 from django.conf import settings as config
@@ -11,10 +14,6 @@ from django.views import static
 import myproject.auth.urls
 import myproject.common.urls
 import myproject.myapp.urls
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.6.0"
 
 urlpatterns = [
     # Include app-specific URL files

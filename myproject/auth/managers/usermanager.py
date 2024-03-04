@@ -3,10 +3,6 @@ import logging
 from django.contrib.auth.models import BaseUserManager
 from django.db.models import Q
 
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.2.0"
-
 logger = logging.getLogger(__name__)
 
 

@@ -1,8 +1,7 @@
-from urllib.parse import unquote
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
 
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.2.0"
+from urllib.parse import unquote
 
 
 def set_request_status(request, status_type, message):

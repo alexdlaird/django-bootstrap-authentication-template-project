@@ -1,3 +1,6 @@
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 from django import forms
 from django.contrib.auth import admin
 from django.contrib.auth import get_user_model
@@ -6,10 +9,6 @@ from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.core import exceptions
 
 from myproject.common.admin import BaseModelAdmin, admin_site
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.2.0"
 
 
 class AdminUserCreationForm(UserCreationForm):

@@ -2,6 +2,9 @@
 Authentication service functions.
 """
 
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 import logging
 
 from django.conf import settings
@@ -10,10 +13,6 @@ from django.urls import reverse
 
 from myproject.common.utils import emailutils
 from myproject.common.utils.viewutils import set_request_status
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.2.0"
 
 logger = logging.getLogger(__name__)
 

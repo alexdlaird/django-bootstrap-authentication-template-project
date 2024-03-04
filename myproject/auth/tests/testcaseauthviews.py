@@ -1,12 +1,11 @@
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
 from myproject.auth.tests.helpers import userhelper
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.2.0"
 
 
 class TestCaseAuthViews(TestCase):

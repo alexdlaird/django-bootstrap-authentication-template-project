@@ -2,12 +2,11 @@
 Publicly accessible named URLs should be defined here to ensure they are properly listed in the generated /sitemap.xml.
 """
 
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 from django.contrib import sitemaps
 from django.urls import reverse
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.3.1"
 
 
 class StaticViewSitemap(sitemaps.Sitemap):

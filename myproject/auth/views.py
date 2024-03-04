@@ -2,6 +2,9 @@
 Authentication view entrance functions.
 """
 
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 import logging
 
 import pytz
@@ -16,10 +19,6 @@ from myproject.auth.forms.userregistrationform import UserRegisterForm
 from myproject.auth.services import authservice
 from myproject.common.utils.viewutils import set_response_status, get_request_status, set_request_status, \
     clear_response_status
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.2.0"
 
 logger = logging.getLogger(__name__)
 

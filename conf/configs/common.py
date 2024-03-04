@@ -2,14 +2,14 @@
 Settings common to all deployment methods.
 """
 
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+__version__ = "1.0.1"
+
 import os
 import socket
 
 from conf.settings import PROJECT_ID
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.3.0"
 
 # Define the base working directory of the application
 BASE_DIR = os.path.normpath(os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..'))

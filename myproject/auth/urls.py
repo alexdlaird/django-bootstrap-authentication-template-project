@@ -2,13 +2,12 @@
 Authentication URLs.
 """
 
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 from django.urls import re_path
 
 from myproject.auth.views import login, logout, forgot, settings, register
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.6.0"
 
 urlpatterns = [
     # Authentication URLs

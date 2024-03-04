@@ -1,10 +1,9 @@
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 from django import forms
 
 from myproject.common.forms.baseform import BaseForm
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.2.0"
 
 
 class UserLoginForm(forms.Form, BaseForm):

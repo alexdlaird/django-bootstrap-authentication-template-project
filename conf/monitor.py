@@ -2,16 +2,15 @@
 Detects changes and restarts the WSGI daemon process. Should only be used in development.
 """
 
+__copyright__ = "Copyright (c) 2018 Alex Laird"
+__license__ = "MIT"
+
 import atexit
 import os
 import queue
 import signal
 import sys
 import threading
-
-__author__ = "Alex Laird"
-__copyright__ = "Copyright 2018, Alex Laird"
-__version__ = "0.2.0"
 
 _interval = 1.0
 _times = {}
