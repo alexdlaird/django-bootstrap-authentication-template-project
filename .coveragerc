@@ -23,5 +23,9 @@ exclude_lines =
     if 0:
     if __name__ == .__main__.:
 
+[xml]
+output = build/coverage/coverage.xml
+
 [html]
 title = My Project Coverage Report
+directory = build/coverage

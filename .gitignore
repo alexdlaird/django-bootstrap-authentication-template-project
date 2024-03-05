@@ -9,5 +9,5 @@ db.sqlite3-journal
 .coverage
 *.log
 .env
-_build
+build
 .venv
