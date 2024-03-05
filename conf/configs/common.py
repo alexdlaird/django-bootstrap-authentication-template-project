@@ -181,3 +181,7 @@ PIPELINE = {
         },
     }
 }
+
+# Server
+
+USE_NGROK = os.environ.get("USE_NGROK", "False") == "True" and os.environ.get("RUN_MAIN", None) != "true"
