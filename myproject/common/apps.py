@@ -13,6 +13,8 @@ class CommonConfig(AppConfig):
     name = 'myproject.common'
     verbose_name = 'Common'
 
+    PROJECT_HOST = settings.PROJECT_HOST
+
     def ready(self):
         if settings.USE_NGROK and os.environ.get("NGROK_AUTHTOKEN"):
             # pyngrok will only be installed, and should only ever be initialized, in a dev environment
@@ -28,7 +30,7 @@ class CommonConfig(AppConfig):
             print(f"ngrok tunnel \"{public_url}\" -> \"http://127.0.0.1:{port}\"")
 
             # Update any base URLs or webhooks to use the public ngrok URL
-            settings.PROJECT_HOST = public_url
+            self.PROJECT_HOST = public_url
             CommonConfig.init_webhooks(public_url)
 
     @staticmethod
