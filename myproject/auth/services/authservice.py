@@ -7,7 +7,6 @@ __license__ = "MIT"
 
 import logging
 
-from django.apps import apps
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.urls import reverse
@@ -31,7 +30,7 @@ def process_register(request, user):
     emailutils.send_multipart_email('email/register',
                                     {
                                         'PROJECT_NAME': settings.PROJECT_NAME,
-                                        'site_url': apps.get_app_config('common').PROJECT_HOST,
+                                        'site_url': settings.PROJECT_HOST,
                                         'login_url': reverse('login'),
                                     },
                                     f'Welcome to {settings.PROJECT_NAME}', [user.email],
@@ -110,7 +109,7 @@ def process_forgot_password(request):
         emailutils.send_multipart_email('email/forgot',
                                         {
                                             'password': password,
-                                            'site_url': apps.get_app_config('common').PROJECT_HOST,
+                                            'site_url': settings.PROJECT_HOST,
                                             'settings_url': reverse('settings')
                                         },
                                         'Your Password Has Been Reset', [email])
