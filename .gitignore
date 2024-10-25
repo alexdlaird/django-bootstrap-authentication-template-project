@@ -10,4 +10,4 @@ db.sqlite3-journal
 *.log
 .env
 build
-.venv
+venv

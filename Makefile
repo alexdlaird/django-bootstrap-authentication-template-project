@@ -1,23 +1,21 @@
-.PHONY: all env virtualenv install nopyc clean build build-migrations migrate test
+.PHONY: all env install nopyc clean build build-migrations migrate test
 
 SHELL := /usr/bin/env bash
-MYPROJECT_VENV ?= .venv
+MYPROJECT_VENV ?= venv
 PYTHON_BIN ?= python
 
-all: env virtualenv install build migrate test
+all: build migrate test
 
 env:
 	cp -n .env.example .env | true
 	cp -n ansible/group_vars/web.yml.example ansible/group_vars/web.yml | true
 	cp -n ansible/hosts/stage.example ansible/hosts/stage | true
 
-virtualenv:
-	@if [ ! -d "$(MYPROJECT_VENV)" ]; then \
-		$(PYTHON_BIN) -m pip install virtualenv; \
-		$(PYTHON_BIN) -m virtualenv $(MYPROJECT_VENV); \
-	fi
+venv:
+	$(PYTHON_BIN) -m pip install virtualenv
+	$(PYTHON_BIN) -m virtualenv $(MYPROJECT_VENV)
 
-install: env virtualenv
+install: env venv
 	@( \
 		source $(MYPROJECT_VENV)/bin/activate; \
 		python -m pip install -r requirements.txt -r requirements-dev.txt; \
