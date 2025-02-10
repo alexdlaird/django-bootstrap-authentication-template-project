@@ -5,4 +5,4 @@ django-dotenv==1.4.2
 django-debug-toolbar==5.0.1
 django-redis==5.4.0
 mysqlclient==2.2.7
-pytz==2024.2
+pytz==2025.1
