@@ -1,2 +1,2 @@
-pyngrok==8.0.0
+pyngrok==8.1.0
 coverage
